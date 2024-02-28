@@ -16,10 +16,13 @@ jobs:
     name: semgrep/ci
     runs-on: ubuntu-20.04
     env:
-      SEMGREP_REPO_NAME: 'r2cexamples/govwa-test'
+      SEMGREP_REPO_NAME: ${{ variable.ORGANIZATION_NAME }}/${{ github.repository }}
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
     container:
       image: returntocorp/semgrep
     steps:
     - uses: actions/checkout@v3
-    - run: semgrep ci
+    - run: |
+        echo ${{ github.repository }}
+        echo ${{ variable.ORGANIZATION_NAME }}
+        #semgrep ci
