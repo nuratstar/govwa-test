@@ -16,14 +16,12 @@ jobs:
     name: semgrep/ci
     runs-on: ubuntu-20.04
     env:
+      SEMGREP_REPO_NAME: ${{ vars.ORGANIZATION_NAME }}/${GITHUB_REPOSITORY#*/}
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
     container:
       image: returntocorp/semgrep
     steps:
     - uses: actions/checkout@v3
     - run: |
-        echo ${{ github.repository }}
-        echo ${{ vars.ORGANIZATION_NAME }}
-        echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-        echo "SEMGREP_REPO_NAME=${{ vars.ORGANIZATION_NAME }}/$REPO_NAME" >> $GITHUB_ENV
-        semgrep ci
+        echo $SEMGREP_REPO_NAME
+        #semgrep ci
