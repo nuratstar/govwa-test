@@ -26,7 +26,7 @@ jobs:
     - run: |
         echo $GITHUB_REPOSITORY
         echo ${{ github.repository }}
-        echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
+        export REPO_NAME=${GITHUB_REPOSITORY#*/}
         echo $REPO_NAME
         export SEMGREP_REPO_NAME=${{ vars.ORGANIZATION_NAME }}/$REPO_NAME
         echo $SEMGREP_REPO_NAME
